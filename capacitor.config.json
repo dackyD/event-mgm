@@ -1,0 +1,6 @@
+{
+  "appId": "com.hnedaclan.eventManager",
+  "appName": "event-manager",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
