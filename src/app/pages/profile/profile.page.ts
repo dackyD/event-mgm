@@ -63,8 +63,15 @@ export class ProfilePage implements OnInit {
         {text: 'Cancel'},
         {
           text: 'Save',
-          handler: data => {
-            this.profileService.updateName(data.firstName, data.lastName);
+          handler: (data: {firstName: string, lastName: string}) => {
+            this.profileService
+                .updateName(data.firstName, data.lastName)
+                .then(() => {
+                  this.userProfile.firstName = data.firstName;
+                  this.userProfile.lastName = data.lastName;
+                }).catch( error => {
+                  console.log(error.message);
+            });
           }
         }
       ]
@@ -100,6 +107,8 @@ export class ProfilePage implements OnInit {
             this.profileService
                 .updateEmail(data.newEmail, data.password)
                 .then(() => {
+                  console.log('Email Changed Successfully');
+                  this.userProfile.email = data.newEmail;
                 }).catch( error => {
                   console.log('ERROR: ' + error.message);
             });
